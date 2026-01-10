@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>НЕ КИНО — Видео</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .video-page{min-height:100vh;padding:24px;color:#fff}
+    .video-wrap{max-width:1000px;margin:40px auto;display:flex;flex-direction:column;align-items:center}
+    .video-wrap video{width:100%;height:auto;background:#000;border:1px solid var(--bg)}
+    .video-note{margin-top:12px;color:#fff;opacity:0.9}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="site-title">НЕ КИНО</h1>
+    <div class="header-buttons">
+      <a href="concerts.html" class="concert-btn">Даты концертов</a>
+      <a href="video.html" class="concert-btn">кто такая ГРУППА НЕ КИНО?</a>
+    </div>
+  </header>
+
+  <main class="video-page">
+    <div class="video-wrap">
+      <video controls preload="metadata">
+        <source src="videos/video.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео. Поместите файл `videos/video.mp4` в проект.
+      </video>
+      
+    </div>
+  </main>
+</body>
+</html>
