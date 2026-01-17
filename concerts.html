@@ -21,7 +21,57 @@
     </div>
   </header>
   <main class="concert-page">
-    <div class="concert-message">у ребят пока нет точных дат концертов, но выйдя на сцену они вас точно удивят!</div>
+    <div class="concert-message">у ребят пока нет точных дат концертов, но выйдя на сцену они вас точно удивят!
+      <div style="margin-top:16px">
+        <button class="open-modal-btn">Уведомить о датах</button>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="concertModal" aria-hidden="true">
+      <div class="modal-overlay" data-close></div>
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" data-close aria-label="Закрыть">×</button>
+        <h2 id="modalTitle">Следите за датами концертов</h2>
+        <p>Оставьте e‑mail, и мы сообщим, когда появятся даты.</p>
+        <form id="notifyForm">
+          <input type="email" name="email" placeholder="Ваш e‑mail" required>
+          <button type="submit">Подписаться</button>
+        </form>
+        <p class="modal-status" aria-live="polite"></p>
+      </div>
+    </div>
   </main>
+  <script>
+  (function(){
+    const openBtn = document.querySelector('.open-modal-btn');
+    const modal = document.getElementById('concertModal');
+    const closeEls = modal ? modal.querySelectorAll('[data-close]') : [];
+    const form = document.getElementById('notifyForm');
+    const status = modal ? modal.querySelector('.modal-status') : null;
+
+    function openModal(){ if(!modal) return; modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; modal.focus(); }
+    function closeModal(){ if(!modal) return; modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; if(status) status.textContent=''; if(form) form.reset(); }
+
+    openBtn && openBtn.addEventListener('click', openModal);
+    closeEls.forEach(el=>el.addEventListener('click', closeModal));
+
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+    // close when clicking overlay
+    if(modal){
+      modal.addEventListener('click', function(e){ if(e.target.classList.contains('modal-overlay')) closeModal(); });
+    }
+
+    if(form){
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const email = form.email.value;
+        if(status) status.textContent = 'Спасибо! Вы подписаны.';
+        setTimeout(closeModal,1500);
+      });
+    }
+  })();
+  </script>
 </body>
 </html>
