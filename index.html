@@ -10,7 +10,7 @@
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       background: #000;
       min-height: 100vh;
@@ -20,12 +20,12 @@
       font-family: 'Arial', sans-serif;
       overflow: hidden;
     }
-    
+
     .loading-container {
       text-align: center;
       color: #f8f3ea;
     }
-    
+
     .loading-title {
       font-size: 3.5rem;
       font-weight: 900;
@@ -34,7 +34,7 @@
       animation: titleFade 1.5s ease-out;
       color: #f8f3ea;
     }
-    
+
     @keyframes titleFade {
       from {
         opacity: 0;
@@ -45,42 +45,42 @@
         transform: translateY(0);
       }
     }
-    
+
     .loading-animation {
       width: 120px;
       height: 120px;
       margin: 0 auto 50px;
       position: relative;
     }
-    
+
     .line {
       position: absolute;
       background: #f8f3ea;
       left: 50%;
       transform: translateX(-50%);
     }
-    
+
     .line1 {
       width: 80px;
       height: 3px;
       top: 30%;
       animation: lineScan 2s ease-in-out infinite;
     }
-    
+
     .line2 {
       width: 60px;
       height: 3px;
       top: 50%;
       animation: lineScan 2s ease-in-out 0.4s infinite;
     }
-    
+
     .line3 {
       width: 80px;
       height: 3px;
       top: 70%;
       animation: lineScan 2s ease-in-out 0.8s infinite;
     }
-    
+
     @keyframes lineScan {
       0%, 100% {
         opacity: 0.3;
@@ -91,14 +91,14 @@
         width: 100px;
       }
     }
-    
+
     .loading-text {
       font-size: 1.2rem;
       color: #ccc;
       letter-spacing: 2px;
       animation: textPulse 1.5s ease-in-out infinite;
     }
-    
+
     @keyframes textPulse {
       0%, 100% {
         opacity: 0.5;
@@ -107,7 +107,7 @@
         opacity: 1;
       }
     }
-    
+
     .progress-bar {
       width: 300px;
       height: 2px;
@@ -116,14 +116,14 @@
       border-radius: 10px;
       overflow: hidden;
     }
-    
+
     .progress-fill {
       height: 100%;
       background: #f8f3ea;
       width: 0%;
       animation: progressFill 3s ease-in-out forwards;
     }
-    
+
     @keyframes progressFill {
       0% {
         width: 0%;
@@ -132,14 +132,14 @@
         width: 100%;
       }
     }
-    
+
     .loading-subtitle {
       margin-top: 30px;
       font-size: 0.9rem;
       color: #999;
       animation: fadeIn 2s ease-out;
     }
-    
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -153,19 +153,19 @@
 <body>
   <div class="loading-container">
     <h1 class="loading-title">НЕ КИНО</h1>
-    
+
     <div class="loading-animation">
       <div class="line line1"></div>
       <div class="line line2"></div>
       <div class="line line3"></div>
     </div>
-    
+
     <p class="loading-text">Загрузка...</p>
-    
+
     <div class="progress-bar">
       <div class="progress-fill"></div>
     </div>
-    
+
     <p class="loading-subtitle">Музыка Виктора Цоя зовёт...</p>
   </div>
 
