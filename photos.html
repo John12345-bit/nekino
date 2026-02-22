@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>НЕ КИНО — Фотоотчеты</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .photos-page{min-height:100vh;padding:24px;color:#fff}
+    .photos-wrap{max-width:1000px;margin:40px auto;display:flex;flex-direction:column;align-items:center}
+    .photos-gallery{width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:24px}
+    .photo-item{position:relative;overflow:hidden;border:1px solid var(--bg);background:#000}
+    .photo-item img{width:100%;height:250px;object-fit:cover;display:block;transition:transform 0.3s ease}
+    .photo-item:hover img{transform:scale(1.05)}
+    .photos-message{color:#fff;opacity:0.9;text-align:center;font-size:1.1rem;margin-bottom:24px}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="site-title">НЕ КИНО</h1>
+    <div class="header-buttons">
+      <a href="main.html" class="concert-btn">Главная</a>
+      <a href="concerts.html" class="concert-btn">Даты концертов</a>
+      <a href="video.html" class="concert-btn">кто такая ГРУППА НЕ КИНО?</a>
+      <a href="photos.html" class="concert-btn">Фотоотчеты</a>
+    </div>
+  </header>
+
+  <main class="photos-page">
+    <div class="photos-wrap">
+      <h2 style="text-align:center;margin-bottom:8px">Фотоотчеты</h2>
+      <p class="photos-message">Фотографии с концертов и событий группы НЕ КИНО</p>
+
+      <div class="photos-gallery" id="photosGallery">
+        <!-- Фотографии будут загружены отсюда -->
+      </div>
+
+      <p class="photos-message" style="margin-top:32px;opacity:0.7">Фото группы <strong></strong> НЕ КИНО</p>
+    </div>
+  </main>
+
+  <script>
+    // Загрузка фотографий для галереи
+    document.addEventListener('DOMContentLoaded', function() {
+      const gallery = document.getElementById('photosGallery');
+
+      // Список фото - можно пополнять по мере добавления файлов
+      const photoFiles = [
+        'photo1.jpg',
+        'photo2.jpg',
+        'photo3.jpg',
+        'photo4.jpg',
+        'photo5.jpg',
+        'photo6.jpg'
+      ];
+
+      photoFiles.forEach(filename => {
+        const photoItem = document.createElement('div');
+        photoItem.className = 'photo-item';
+
+        const img = document.createElement('img');
+        img.src = `images/${filename}`;
+        img.alt = `Фотография - ${filename}`;
+        img.onerror = function() {
+          this.parentElement.style.display = 'none';
+        };
+
+        photoItem.appendChild(img);
+        gallery.appendChild(photoItem);
+      });
+    });
+  </script>
+</body>
+</html>
