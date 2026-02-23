@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>НЕ КИНО — Подписчики</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .subs-wrap{max-width:980px;margin:32px auto;padding:20px;background:transparent}
+    table{width:100%;border-collapse:collapse;background:#fff}
+    th,td{padding:10px;border:1px solid #eee;text-align:left;color:#000}
+    .actions{margin:12px 0;display:flex;gap:8px}
+    .muted{color:#666;font-size:0.95rem}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="site-title">НЕ КИНО — Подписчики</h1>
+    <div class="header-buttons">
+      <a href="main.html" class="concert-btn">Главная</a>
+      <a href="concerts.html" class="concert-btn">Даты концертов</a>
+      <a href="video.html" class="concert-btn">Видео</a>
+      <a href="photos.html" class="concert-btn">Фото</a>
+    </div>
+  </header>
+
+  <main class="subs-wrap container">
+    <div class="actions">
+      <button id="refreshBtn" class="concert-btn">Обновить</button>
+      <button id="exportBtn" class="concert-btn">Экспорт CSV</button>
+      <button id="clearBtn" class="concert-btn">Очистить локальный список</button>
+      <div style="flex:1"></div>
+      <a href="index.html" class="concert-btn">Вернуться на сайт</a>
+    </div>
+    <p class="muted">На этой странице отображается список подписчиков из репозитория (<code>data/subscribers.json</code>) и локальные записи из вашего браузера (localStorage). Чтобы добавить запись в репозиторий, откройте <code>data/subscribers.json</code> в GitHub и отредактируйте/создайте PR.</p>
+
+    <table id="subsTable">
+      <thead>
+        <tr><th>#</th><th>Источник</th><th>E‑mail</th><th>Дата регистрации (UTC)</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script>
+    const STORAGE_KEY = 'nekino_subscribers';
+
+    // Load canonical list from repo (data/subscribers.json) and then merge localStorage
+    async function loadList(){
+      const tbody = document.querySelector('#subsTable tbody');
+      tbody.innerHTML = '';
+
+      let repoList = [];
+      try{
+        const resp = await fetch('data/subscribers.json', {cache: 'no-store'});
+        if(resp.ok){ repoList = await resp.json(); }
+      }catch(e){ repoList = []; }
+
+      // normalize repo items
+      repoList = (Array.isArray(repoList) ? repoList : []).map(i=>({source:'repo', email: i.email||i, createdAt: i.createdAt||i.createdAt||''}));
+
+      let localList = [];
+      try{ localList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }catch(e){ localList = []; }
+      localList = (Array.isArray(localList) ? localList : []).map(i=>({source:'local', email: i.email||i, createdAt: i.createdAt||''}));
+
+      const merged = repoList.concat(localList);
+
+      merged.forEach((item, idx) => {
+        const tr = document.createElement('tr');
+        const tdIndex = document.createElement('td'); tdIndex.textContent = idx+1;
+        const tdSrc = document.createElement('td'); tdSrc.textContent = item.source === 'repo' ? 'repo' : 'local';
+        const tdEmail = document.createElement('td'); tdEmail.textContent = item.email || '';
+        const tdTs = document.createElement('td'); tdTs.textContent = item.createdAt ? new Date(item.createdAt).toUTCString() : '';
+        tr.appendChild(tdIndex); tr.appendChild(tdSrc); tr.appendChild(tdEmail); tr.appendChild(tdTs);
+        tbody.appendChild(tr);
+      });
+    }
+
+    function exportCSV(){
+      // build CSV from repo + local
+      fetch('data/subscribers.json', {cache:'no-store'}).then(async resp=>{
+        let repoList = [];
+        try{ if(resp.ok) repoList = await resp.json(); }catch(e){ repoList = []; }
+        let localList = [];
+        try{ localList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }catch(e){ localList = []; }
+        const rows = [['source','email','createdAt']]
+          .concat((Array.isArray(repoList) ? repoList : []).map(i=>['repo', i.email||i, i.createdAt||'']))
+          .concat((Array.isArray(localList) ? localList : []).map(i=>['local', i.email||i, i.createdAt||'']));
+        if(rows.length<=1){ alert('Список пуст.'); return; }
+        const csv = rows.map(r=>r.map(v=>'"'+String(v||'').replace(/"/g,'""')+'"').join(',')).join('\n');
+        const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url; a.download = 'nekino_subscribers.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      });
+    }
+
+    document.getElementById('refreshBtn').addEventListener('click', loadList);
+    document.getElementById('exportBtn').addEventListener('click', exportCSV);
+    document.getElementById('clearBtn').addEventListener('click', function(){ if(confirm('Очистить локальный список подписчиков?')){ localStorage.removeItem(STORAGE_KEY); loadList(); }});
+
+    // load on open
+    loadList();
+  </script>
+</body>
+</html>

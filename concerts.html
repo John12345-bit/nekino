@@ -8,7 +8,7 @@
   <style>
     /* Page-specific tweaks */
     .concert-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-    .concert-message{color:#f7f3e6;font-size:1.6rem;font-weight:800;text-align:center;max-width:900px}
+    .concert-message{color:#000;font-size:1.6rem;font-weight:800;text-align:center;max-width:900px}
     @media(min-width:900px){.concert-message{font-size:2rem}}
   </style>
 </head>
@@ -69,8 +69,29 @@
     if(form){
       form.addEventListener('submit', function(e){
         e.preventDefault();
-        const email = form.email.value;
-        if(status) status.textContent = 'Спасибо! Вы подписаны.';
+        const email = (form.email.value || '').trim();
+        const statusText = status;
+
+        // Простая валидация e-mail
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!re.test(email)){
+          if(statusText) statusText.textContent = 'Введите корректный e‑mail.';
+          return;
+        }
+
+        const STORAGE_KEY = 'nekino_subscribers';
+        let list = [];
+        try{ list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }catch(err){ list = []; }
+
+        // Добавляем только уникальные email (без учёта регистра)
+        const exists = list.some(item => item.email && item.email.toLowerCase() === email.toLowerCase());
+        if(!exists){
+          list.push({ email: email, createdAt: new Date().toISOString() });
+          try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }catch(err){ /* ignore */ }
+        }
+
+        if(statusText) statusText.textContent = 'Спасибо! Вы подписаны.';
+        form.reset();
         setTimeout(closeModal,1500);
       });
     }

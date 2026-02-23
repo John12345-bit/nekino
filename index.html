@@ -12,18 +12,19 @@
     }
 
     body {
-      background: #000;
+      background: #ffffff;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Arial', sans-serif;
       overflow: hidden;
+      color: #000;
     }
 
     .loading-container {
       text-align: center;
-      color: #f8f3ea;
+      color: #000;
     }
 
     .loading-title {
@@ -32,7 +33,7 @@
       margin-bottom: 50px;
       letter-spacing: 3px;
       animation: titleFade 1.5s ease-out;
-      color: #f8f3ea;
+      color: #000;
     }
 
     @keyframes titleFade {
@@ -55,7 +56,7 @@
 
     .line {
       position: absolute;
-      background: #f8f3ea;
+      background: #000;
       left: 50%;
       transform: translateX(-50%);
     }
@@ -94,7 +95,7 @@
 
     .loading-text {
       font-size: 1.2rem;
-      color: #ccc;
+      color: #333;
       letter-spacing: 2px;
       animation: textPulse 1.5s ease-in-out infinite;
     }
@@ -111,7 +112,7 @@
     .progress-bar {
       width: 300px;
       height: 2px;
-      background: rgba(248, 243, 234, 0.1);
+      background: rgba(0,0,0,0.08);
       margin: 40px auto 0;
       border-radius: 10px;
       overflow: hidden;
@@ -119,7 +120,7 @@
 
     .progress-fill {
       height: 100%;
-      background: #f8f3ea;
+      background: #000;
       width: 0%;
       animation: progressFill 3s ease-in-out forwards;
     }
@@ -136,7 +137,7 @@
     .loading-subtitle {
       margin-top: 30px;
       font-size: 0.9rem;
-      color: #999;
+      color: #333;
       animation: fadeIn 2s ease-out;
     }
 

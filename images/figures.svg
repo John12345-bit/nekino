@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <title>Человечки — декоративный вектор</title>
+  <defs>
+    <style> .a{fill:#f4a261} .b{fill:#e76f51} .c{fill:#2a9d8f} </style>
+  </defs>
+  <!-- стилизованные человечки, упрощённая графика -->
+  <g transform="translate(10,20)">
+    <g class="a" transform="translate(0,0)">
+      <rect x="0" y="70" width="36" height="12" rx="3"/>
+      <rect x="10" y="30" width="16" height="42" rx="3"/>
+      <rect x="-6" y="78" width="14" height="6" rx="2" transform="rotate(-12 1 81)"/>
+      <rect x="28" y="78" width="14" height="6" rx="2" transform="rotate(12 35 81)"/>
+      <circle cx="18" cy="16" r="10"/>
+    </g>
+
+    <g class="b" transform="translate(70,8) rotate(-8)">
+      <rect x="0" y="70" width="44" height="12" rx="3"/>
+      <rect x="14" y="30" width="16" height="42" rx="3"/>
+      <rect x="-6" y="78" width="14" height="6" rx="2" transform="rotate(-28 1 81)"/>
+      <rect x="36" y="78" width="14" height="6" rx="2" transform="rotate(8 43 81)"/>
+      <circle cx="24" cy="12" r="10"/>
+    </g>
+
+    <g class="b" transform="translate(140,14) rotate(6)">
+      <rect x="0" y="70" width="36" height="12" rx="3"/>
+      <rect x="6" y="32" width="18" height="40" rx="3"/>
+      <rect x="-8" y="78" width="14" height="6" rx="2" transform="rotate(-6 1 81)"/>
+      <rect x="30" y="78" width="14" height="6" rx="2" transform="rotate(28 37 81)"/>
+      <circle cx="16" cy="14" r="10"/>
+    </g>
+
+    <g class="a" transform="translate(220,36) rotate(-18)">
+      <rect x="0" y="70" width="46" height="12" rx="3"/>
+      <rect x="18" y="28" width="16" height="44" rx="3"/>
+      <rect x="-6" y="78" width="14" height="6" rx="2" transform="rotate(-36 1 81)"/>
+      <rect x="40" y="78" width="14" height="6" rx="2" transform="rotate(48 47 81)"/>
+      <circle cx="26" cy="10" r="10"/>
+    </g>
+
+    <g class="a" transform="translate(290,8)">
+      <rect x="0" y="70" width="36" height="12" rx="3"/>
+      <rect x="10" y="30" width="16" height="42" rx="3"/>
+      <rect x="-6" y="78" width="14" height="6" rx="2" transform="rotate(-12 1 81)"/>
+      <rect x="28" y="78" width="14" height="6" rx="2" transform="rotate(12 35 81)"/>
+      <circle cx="18" cy="16" r="10"/>
+    </g>
+  </g>
+</svg>
