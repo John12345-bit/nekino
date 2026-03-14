@@ -47,7 +47,7 @@ body{
   font-size:0.95rem;
 }
 .concert-btn{margin-left:12px;transition:background-color .18s,color .18s,border-color .18s}
-.concert-btn:hover{background:#000;color:#fff;border-color:#000}
+.concert-btn:hover{background:#6A0DAD;color:#000;border-color:#6A0DAD}
 
 /* page background now uses paper texture */
 html,body{background:transparent}
@@ -68,10 +68,10 @@ html,body{background:transparent}
 .modal[aria-hidden="false"]{visibility:visible;opacity:1}
 .modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.65)}
 #modal-content-placeholder{}
-.modal-content{position:relative;background:#f7f7f7;color:#000;padding:20px;max-width:480px;width:calc(100% - 40px);border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.08);z-index:2}
+    .modal-content{position:relative;background:#f7f7f7;color:#000;padding:20px;max-width:600px;width:calc(100% - 40px);height:90vh;overflow:auto;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.08);z-index:2}
 .modal-close{position:absolute;right:10px;top:8px;background:transparent;border:none;color:#000;font-size:1.4rem;cursor:pointer}
 .open-modal-btn{background:transparent;border:1px solid #000;color:var(--text);padding:8px 12px;border-radius:6px;cursor:pointer}
-.open-modal-btn:hover{background:#000;color:#fff}
+.open-modal-btn:hover{background:#6A0DAD;color:#000}
 #notifyForm{display:flex;gap:8px;margin-top:12px}
 #notifyForm input[type="email"]{flex:1;padding:8px 10px;border-radius:6px;border:1px solid #ddd;background:#fff;color:#000}
 #notifyForm button{padding:8px 12px;border-radius:6px;border:none;background:#000;color:#fff;cursor:pointer}

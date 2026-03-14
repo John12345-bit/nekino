@@ -28,109 +28,48 @@
     }
 
     .loading-title {
-      font-size: 3.5rem;
+      font-size: 10rem;
       font-weight: 900;
       margin-bottom: 50px;
       letter-spacing: 3px;
-      animation: titleFade 1.5s ease-out;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .letter:nth-child(1) { animation-delay: 0s; }
+    .letter:nth-child(2) { animation-delay: 0.3s; }
+    .letter:nth-child(3) { animation-delay: 0.6s; }
+    .letter:nth-child(4) { animation-delay: 0.9s; }
+    .letter:nth-child(5) { animation-delay: 1.2s; }
+    .letter:nth-child(6) { animation-delay: 1.5s; }
+
+    .letter {
+      display: inline-block;
+      animation: drawLetter 3s ease-in-out forwards;
+      opacity: 0;
+      -webkit-text-stroke: 2px #000;
+      -webkit-text-stroke-dasharray: 4000;
+      -webkit-text-stroke-dashoffset: 4000;
       color: #000;
     }
 
-    @keyframes titleFade {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .loading-animation {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 50px;
-      position: relative;
-    }
-
-    .line {
-      position: absolute;
-      background: #000;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .line1 {
-      width: 80px;
-      height: 3px;
-      top: 30%;
-      animation: lineScan 2s ease-in-out infinite;
-    }
-
-    .line2 {
-      width: 60px;
-      height: 3px;
-      top: 50%;
-      animation: lineScan 2s ease-in-out 0.4s infinite;
-    }
-
-    .line3 {
-      width: 80px;
-      height: 3px;
-      top: 70%;
-      animation: lineScan 2s ease-in-out 0.8s infinite;
-    }
-
-    @keyframes lineScan {
-      0%, 100% {
-        opacity: 0.3;
-        width: 40px;
-      }
-      50% {
-        opacity: 1;
-        width: 100px;
-      }
-    }
-
-    .loading-text {
-      font-size: 1.2rem;
-      color: #333;
-      letter-spacing: 2px;
-      animation: textPulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes textPulse {
-      0%, 100% {
-        opacity: 0.5;
-      }
-      50% {
-        opacity: 1;
-      }
-    }
-
-    .progress-bar {
-      width: 300px;
-      height: 2px;
-      background: rgba(0,0,0,0.08);
-      margin: 40px auto 0;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: #000;
-      width: 0%;
-      animation: progressFill 3s ease-in-out forwards;
-    }
-
-    @keyframes progressFill {
+    @keyframes drawLetter {
       0% {
-        width: 0%;
+        opacity: 0;
+        -webkit-text-stroke-dashoffset: 4000;
+      }
+      50% {
+        opacity: 1;
+        -webkit-text-stroke-dashoffset: 0;
+        color: transparent;
       }
       100% {
-        width: 100%;
+        opacity: 1;
+        -webkit-text-stroke-dashoffset: 0;
+        color: #000;
       }
     }
 
@@ -138,34 +77,16 @@
       margin-top: 30px;
       font-size: 0.9rem;
       color: #333;
-      animation: fadeIn 2s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      animation: fadeIn 2s ease-out 3s both;
     }
   </style>
 </head>
 <body>
   <div class="loading-container">
-    <h1 class="loading-title">НЕ КИНО</h1>
-
-    <div class="loading-animation">
-      <div class="line line1"></div>
-      <div class="line line2"></div>
-      <div class="line line3"></div>
-    </div>
-
-    <p class="loading-text">Загрузка...</p>
-
-    <div class="progress-bar">
-      <div class="progress-fill"></div>
-    </div>
+    <h1 class="loading-title">
+      <div class="word"><span class="letter">Н</span><span class="letter">Е</span></div>
+      <div class="word"><span class="letter">К</span><span class="letter">И</span><span class="letter">Н</span><span class="letter">О</span></div>
+    </h1>
 
     <p class="loading-subtitle">Музыка Виктора Цоя зовёт...</p>
   </div>
@@ -174,7 +95,7 @@
     // Перенаправление на главную страницу после загрузки
     setTimeout(() => {
       window.location.href = 'main.html';
-    }, 3000);
+    }, 5000);
   </script>
 </body>
 </html>
